@@ -15,8 +15,9 @@ import {
   VStack,
   ClientOnly,
   Skeleton,
+  Image,
 } from "@chakra-ui/react"
-import Image from "next/image"
+import NextImage from "next/image"
 import { ColorModeToggle } from "../components/color-mode-toggle"
 
 // Header Component
@@ -34,8 +35,8 @@ const Header = () => (
       <Flex justify="space-between" align="center" py="4">
         <HStack gap="8">
           <Box>
-            <Image
-              alt="chakra logo"
+            <NextImage
+              alt="company logo"
               src="/static/logo.svg"
               width="32"
               height="32"
@@ -43,13 +44,13 @@ const Header = () => (
           </Box>
           <HStack gap="6" hideBelow="md">
             <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
-              Features
-            </Link>
-            <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
-              Pricing
+              Services
             </Link>
             <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
               About
+            </Link>
+            <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
+              Portfolio
             </Link>
             <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
               Contact
@@ -61,11 +62,8 @@ const Header = () => (
           <ClientOnly fallback={<Skeleton w="10" h="10" rounded="md" />}>
             <ColorModeToggle />
           </ClientOnly>
-          <Button variant="ghost" hideBelow="md">
-            Sign In
-          </Button>
-          <Button colorPalette="blue" size="sm">
-            Get Started
+          <Button colorPalette="red" size="lg" fontWeight="bold" px="8">
+            📞 Call Now
           </Button>
         </HStack>
       </Flex>
@@ -73,166 +71,215 @@ const Header = () => (
   </Box>
 )
 
-// Hero Section
+// Hero Section with Hero Image
 const HeroSection = () => (
-  <Box as="section" py={{ base: "16", md: "24" }} bg="bg.surface">
+  <Box
+    as="section"
+    py={{ base: "16", md: "24" }}
+    bg="bg.surface"
+    overflow="hidden"
+  >
     <Container maxW="7xl">
-      <Stack gap="8" align="center" textAlign="center">
-        <Stack gap="4" maxW="3xl">
-          <Heading
-            size={{ base: "3xl", md: "5xl" }}
-            fontWeight="bold"
-            lineHeight="1.1"
-          >
-            Build amazing apps with <Span color="blue.500">Chakra UI v3</Span>
-          </Heading>
-          <Text fontSize={{ base: "lg", md: "xl" }} color="fg.muted" maxW="2xl">
-            Create beautiful, accessible, and performant applications with our
-            comprehensive component library built for React developers.
-          </Text>
+      <Grid
+        columns={{ base: 1, lg: 2 }}
+        gap="12"
+        align="center"
+        minH={{ base: "auto", lg: "80vh" }}
+      >
+        {/* Hero Content */}
+        <Stack gap="8" justify="center">
+          <Stack gap="6">
+            <Heading
+              size={{ base: "3xl", md: "5xl" }}
+              fontWeight="bold"
+              lineHeight="1.1"
+            >
+              Transform Your Business with
+              <Span color="blue.500" display="block">
+                Professional Solutions
+              </Span>
+            </Heading>
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              color="fg.muted"
+              maxW="xl"
+            >
+              We deliver exceptional results that drive growth, increase
+              efficiency, and help your business reach new heights. Get started
+              today with a free consultation.
+            </Text>
+          </Stack>
+
+          <HStack gap="4" flexWrap="wrap">
+            <Button colorPalette="red" size="xl" px="10" fontWeight="bold">
+              📞 Call Now - (555) 123-4567
+            </Button>
+            <Button variant="outline" size="xl" px="8">
+              Learn More
+            </Button>
+          </HStack>
+
+          <HStack gap="8" pt="4">
+            <VStack gap="1" align="start">
+              <Text fontSize="2xl" fontWeight="bold" color="blue.500">
+                500+
+              </Text>
+              <Text fontSize="sm" color="fg.muted">
+                Happy Clients
+              </Text>
+            </VStack>
+            <VStack gap="1" align="start">
+              <Text fontSize="2xl" fontWeight="bold" color="green.500">
+                98%
+              </Text>
+              <Text fontSize="sm" color="fg.muted">
+                Success Rate
+              </Text>
+            </VStack>
+            <VStack gap="1" align="start">
+              <Text fontSize="2xl" fontWeight="bold" color="purple.500">
+                24/7
+              </Text>
+              <Text fontSize="sm" color="fg.muted">
+                Support
+              </Text>
+            </VStack>
+          </HStack>
         </Stack>
 
-        <HStack gap="4" flexWrap="wrap" justify="center">
-          <Button colorPalette="blue" size="lg" px="8">
-            Start Building Now
-          </Button>
-          <Button variant="outline" size="lg" px="8">
-            View Documentation
-          </Button>
-        </HStack>
-
-        <Box mt="8" p="2" bg="bg.muted" rounded="xl" maxW="4xl" w="full">
+        {/* Hero Image */}
+        <Box position="relative" h={{ base: "400px", lg: "600px" }}>
           <Box
+            position="absolute"
+            inset="0"
+            bg="gradient-to-br"
+            bgGradient="linear(to-br, blue.400, purple.600)"
+            rounded="2xl"
+            shadow="2xl"
+            transform="rotate(3deg)"
+            zIndex="1"
+          />
+          <Box
+            position="relative"
+            h="full"
             bg="white"
-            _dark={{ bg: "gray.900" }}
-            rounded="lg"
+            _dark={{ bg: "gray.800" }}
+            rounded="2xl"
+            shadow="xl"
+            overflow="hidden"
+            zIndex="2"
             p="8"
-            shadow="lg"
+            display="flex"
+            align="center"
+            justify="center"
+            flexDirection="column"
+            gap="6"
           >
-            <VStack gap="6">
-              <Heading size="lg" color="fg.muted">
-                Experience the power of Chakra UI
-              </Heading>
-              <SimpleGrid columns={{ base: 1, md: 3 }} gap="4" w="full">
-                <Card.Root variant="outline">
-                  <Card.Body textAlign="center" py="6">
-                    <Text fontWeight="semibold">Accessible</Text>
-                  </Card.Body>
-                </Card.Root>
-                <Card.Root variant="outline">
-                  <Card.Body textAlign="center" py="6">
-                    <Text fontWeight="semibold">Themeable</Text>
-                  </Card.Body>
-                </Card.Root>
-                <Card.Root variant="outline">
-                  <Card.Body textAlign="center" py="6">
-                    <Text fontWeight="semibold">Composable</Text>
-                  </Card.Body>
-                </Card.Root>
-              </SimpleGrid>
+            <Box
+              w="20"
+              h="20"
+              bg="blue.500"
+              rounded="full"
+              display="flex"
+              align="center"
+              justify="center"
+              fontSize="3xl"
+            >
+              🚀
+            </Box>
+            <VStack gap="4" textAlign="center">
+              <Heading size="lg">Ready to Get Started?</Heading>
+              <Text color="fg.muted">
+                Join hundreds of satisfied customers who have transformed their
+                business with our solutions.
+              </Text>
+              <Button colorPalette="blue" size="lg">
+                Get Free Quote
+              </Button>
             </VStack>
           </Box>
         </Box>
-      </Stack>
+      </Grid>
     </Container>
   </Box>
 )
 
-// Features Section
-const FeaturesSection = () => (
+// Testimonials Section
+const TestimonialsSection = () => (
   <Box as="section" py={{ base: "16", md: "24" }} bg="bg.canvas">
     <Container maxW="7xl">
       <Stack gap="16">
         <Stack gap="4" textAlign="center" maxW="3xl" mx="auto">
           <Heading size={{ base: "2xl", md: "3xl" }}>
-            Everything you need to build modern UIs
+            What Our Clients Say
           </Heading>
           <Text fontSize="lg" color="fg.muted">
-            Chakra UI provides the building blocks you need to build your React
-            application
+            Don't just take our word for it. Here's what our satisfied customers
+            have to say about working with us.
           </Text>
         </Stack>
 
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="8">
-          {features.map((feature, index) => (
+          {testimonials.map((testimonial, index) => (
             <Card.Root key={index} variant="elevated" h="full">
-              <Card.Body p="6">
-                <Stack gap="4">
-                  <Box>
+              <Card.Body p="8">
+                <Stack gap="6">
+                  {/* Star Rating */}
+                  <HStack gap="1">
+                    {[...Array(5)].map((_, i) => (
+                      <Text key={i} color="yellow.500" fontSize="lg">
+                        ★
+                      </Text>
+                    ))}
+                  </HStack>
+
+                  {/* Testimonial Text */}
+                  <Text fontSize="md" lineHeight="1.6" color="fg.muted">
+                    "{testimonial.text}"
+                  </Text>
+
+                  {/* Client Info */}
+                  <HStack gap="4">
                     <Box
-                      p="3"
-                      bg="blue.50"
-                      _dark={{ bg: "blue.900/20" }}
-                      rounded="lg"
-                      w="fit-content"
+                      w="12"
+                      h="12"
+                      bg="gradient-to-br"
+                      bgGradient={`linear(to-br, ${testimonial.color}.400, ${testimonial.color}.600)`}
+                      rounded="full"
+                      display="flex"
+                      align="center"
+                      justify="center"
+                      color="white"
+                      fontWeight="bold"
+                      fontSize="lg"
                     >
-                      <Box fontSize="xl" color="blue.500">
-                        {feature.icon}
-                      </Box>
+                      {testimonial.name.charAt(0)}
                     </Box>
-                  </Box>
-                  <Stack gap="2">
-                    <Heading size="md">{feature.title}</Heading>
-                    <Text color="fg.muted">{feature.description}</Text>
-                  </Stack>
+                    <VStack gap="0" align="start">
+                      <Text fontWeight="semibold">{testimonial.name}</Text>
+                      <Text fontSize="sm" color="fg.muted">
+                        {testimonial.role} at {testimonial.company}
+                      </Text>
+                    </VStack>
+                  </HStack>
                 </Stack>
               </Card.Body>
             </Card.Root>
           ))}
         </SimpleGrid>
-      </Stack>
-    </Container>
-  </Box>
-)
 
-// CTA Section
-const CTASection = () => (
-  <Box as="section" py={{ base: "16", md: "24" }} bg="blue.500" color="white">
-    <Container maxW="7xl">
-      <Stack gap="8" textAlign="center">
-        <Stack gap="4">
-          <Heading size={{ base: "2xl", md: "3xl" }} color="white">
-            Ready to get started?
-          </Heading>
-          <Text fontSize="lg" color="blue.100" maxW="2xl" mx="auto">
-            Join thousands of developers who are already building amazing
-            applications with Chakra UI
-          </Text>
-        </Stack>
-
-        <HStack gap="4" justify="center" flexWrap="wrap">
-          <Button colorPalette="white" variant="solid" size="lg" px="8">
-            Start Your Project
-          </Button>
-          <Button colorPalette="white" variant="outline" size="lg" px="8">
-            View Examples
-          </Button>
-        </HStack>
-
-        <Text fontSize="sm" color="blue.200" mt="4">
-          No credit card required • Free forever plan available
-        </Text>
-      </Stack>
-    </Container>
-  </Box>
-)
-
-// Stats Section
-const StatsSection = () => (
-  <Box as="section" py={{ base: "16", md: "20" }} bg="bg.surface">
-    <Container maxW="7xl">
-      <SimpleGrid columns={{ base: 2, md: 4 }} gap="8" textAlign="center">
-        {stats.map((stat, index) => (
-          <Stack key={index} gap="2">
-            <Heading size="2xl" color="blue.500">
-              {stat.value}
-            </Heading>
-            <Text color="fg.muted" fontWeight="medium">
-              {stat.label}
+        {/* Call to Action in Testimonials */}
+        <Box textAlign="center" pt="8">
+          <VStack gap="4">
+            <Text fontSize="lg" fontWeight="medium">
+              Ready to join our satisfied customers?
             </Text>
-          </Stack>
-        ))}
-      </SimpleGrid>
+            <Button colorPalette="red" size="xl" px="10" fontWeight="bold">
+              📞 Call Now - (555) 123-4567
+            </Button>
+          </VStack>
+        </Box>
+      </Stack>
     </Container>
   </Box>
 )
@@ -241,73 +288,67 @@ const StatsSection = () => (
 const Footer = () => (
   <Box as="footer" bg="bg.surface" borderTop="1px" borderColor="border">
     <Container maxW="7xl">
-      <Stack gap="8" py="12">
-        <SimpleGrid columns={{ base: 1, md: 4 }} gap="8">
-          <Stack gap="4">
+      <Stack gap="12" py="16">
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap="8">
+          {/* Company Info */}
+          <Stack gap="6">
             <HStack>
-              <Image
-                alt="chakra logo"
+              <NextImage
+                alt="company logo"
                 src="/static/logo.svg"
-                width="24"
-                height="24"
+                width="32"
+                height="32"
               />
-              <Text fontWeight="bold" fontSize="lg">
-                Chakra UI
+              <Text fontWeight="bold" fontSize="xl">
+                YourCompany
               </Text>
             </HStack>
             <Text color="fg.muted" maxW="sm">
-              Build accessible React apps with speed. Chakra UI provides the
-              building blocks.
+              We're dedicated to providing exceptional solutions that help
+              businesses grow and succeed in today's competitive market.
             </Text>
-            <Button colorPalette="blue" size="sm" w="fit-content">
-              Join Community
+            <Button
+              colorPalette="red"
+              size="lg"
+              w="fit-content"
+              fontWeight="bold"
+            >
+              📞 Call Now
             </Button>
           </Stack>
 
+          {/* Services */}
           <Stack gap="4">
-            <Text fontWeight="semibold">Product</Text>
+            <Text fontWeight="semibold" fontSize="lg">
+              Services
+            </Text>
             <Stack gap="2">
               <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Components
+                Business Consulting
               </Link>
               <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Templates
+                Digital Marketing
               </Link>
               <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Figma Kit
+                Web Development
               </Link>
               <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Changelog
+                Strategy Planning
               </Link>
             </Stack>
           </Stack>
 
+          {/* Company */}
           <Stack gap="4">
-            <Text fontWeight="semibold">Resources</Text>
+            <Text fontWeight="semibold" fontSize="lg">
+              Company
+            </Text>
             <Stack gap="2">
               <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Documentation
+                About Us
               </Link>
               <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Guides
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Blog
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Examples
-              </Link>
-            </Stack>
-          </Stack>
-
-          <Stack gap="4">
-            <Text fontWeight="semibold">Company</Text>
-            <Stack gap="2">
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                About
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Team
+                Our Team
               </Link>
               <Link color="fg.muted" _hover={{ color: "fg" }}>
                 Careers
@@ -317,8 +358,45 @@ const Footer = () => (
               </Link>
             </Stack>
           </Stack>
+
+          {/* Contact Info */}
+          <Stack gap="4">
+            <Text fontWeight="semibold" fontSize="lg">
+              Contact
+            </Text>
+            <Stack gap="3">
+              <VStack gap="1" align="start">
+                <Text fontWeight="medium">📞 Phone</Text>
+                <Link
+                  color="red.500"
+                  fontWeight="bold"
+                  fontSize="lg"
+                  _hover={{ color: "red.600" }}
+                >
+                  (555) 123-4567
+                </Link>
+              </VStack>
+              <VStack gap="1" align="start">
+                <Text fontWeight="medium">📧 Email</Text>
+                <Link color="fg.muted" _hover={{ color: "fg" }}>
+                  hello@yourcompany.com
+                </Link>
+              </VStack>
+              <VStack gap="1" align="start">
+                <Text fontWeight="medium">📍 Address</Text>
+                <Text color="fg.muted" fontSize="sm">
+                  123 Business St
+                  <br />
+                  Suite 100
+                  <br />
+                  City, ST 12345
+                </Text>
+              </VStack>
+            </Stack>
+          </Stack>
         </SimpleGrid>
 
+        {/* Bottom Footer */}
         <Box pt="8" borderTop="1px" borderColor="border">
           <Flex
             direction={{ base: "column", md: "row" }}
@@ -327,14 +405,17 @@ const Footer = () => (
             gap="4"
           >
             <Text color="fg.muted" fontSize="sm">
-              © 2024 Chakra UI. All rights reserved.
+              © 2024 YourCompany. All rights reserved.
             </Text>
-            <HStack gap="4">
+            <HStack gap="6">
               <Link color="fg.muted" fontSize="sm" _hover={{ color: "fg" }}>
                 Privacy Policy
               </Link>
               <Link color="fg.muted" fontSize="sm" _hover={{ color: "fg" }}>
                 Terms of Service
+              </Link>
+              <Link color="fg.muted" fontSize="sm" _hover={{ color: "fg" }}>
+                Cookie Policy
               </Link>
             </HStack>
           </Flex>
@@ -344,51 +425,50 @@ const Footer = () => (
   </Box>
 )
 
-// Data
-const features = [
+// Testimonials Data
+const testimonials = [
   {
-    icon: "⚡",
-    title: "Lightning Fast",
-    description:
-      "Optimized for performance with minimal bundle size and runtime overhead.",
+    name: "Sarah Johnson",
+    role: "CEO",
+    company: "TechStart Inc",
+    text: "Working with this team completely transformed our business. Their expertise and dedication helped us increase our revenue by 300% in just 6 months.",
+    color: "blue",
   },
   {
-    icon: "🎨",
-    title: "Fully Customizable",
-    description:
-      "Theme your components with design tokens and CSS-in-JS styling.",
+    name: "Michael Chen",
+    role: "Marketing Director",
+    company: "GrowthCorp",
+    text: "The results speak for themselves. Our customer acquisition cost dropped by 50% while our conversion rates doubled. Highly recommend their services!",
+    color: "green",
   },
   {
-    icon: "♿",
-    title: "Accessible by Default",
-    description:
-      "Built with accessibility in mind, following WAI-ARIA guidelines.",
+    name: "Emily Davis",
+    role: "Founder",
+    company: "InnovateLab",
+    text: "Professional, responsive, and incredibly knowledgeable. They understood our vision and delivered beyond our expectations. A true partner in our success.",
+    color: "purple",
   },
   {
-    icon: "📱",
-    title: "Responsive Design",
-    description:
-      "Mobile-first responsive design system with breakpoint utilities.",
+    name: "Robert Wilson",
+    role: "Operations Manager",
+    company: "Efficiency Pro",
+    text: "The strategic insights and implementation support we received were game-changing. Our operational efficiency improved dramatically within weeks.",
+    color: "orange",
   },
   {
-    icon: "���",
-    title: "Composable",
-    description:
-      "Compose complex UIs from simple, reusable component building blocks.",
+    name: "Lisa Thompson",
+    role: "VP of Sales",
+    company: "SalesForce Plus",
+    text: "Our sales team's performance skyrocketed after implementing their recommendations. The ROI on this investment was immediate and substantial.",
+    color: "red",
   },
   {
-    icon: "🌙",
-    title: "Dark Mode",
-    description:
-      "First-class support for dark mode with seamless theme switching.",
+    name: "David Kim",
+    role: "CTO",
+    company: "DevSolutions",
+    text: "Technical excellence combined with business acumen - rare to find both in one team. They helped us scale our platform to handle 10x the traffic.",
+    color: "teal",
   },
-]
-
-const stats = [
-  { value: "100K+", label: "GitHub Stars" },
-  { value: "2M+", label: "Monthly Downloads" },
-  { value: "50K+", label: "Discord Members" },
-  { value: "500+", label: "Contributors" },
 ]
 
 // Main Page Component
@@ -397,9 +477,7 @@ export default async function Page() {
     <Box minH="100vh" bg="bg.canvas">
       <Header />
       <HeroSection />
-      <StatsSection />
-      <FeaturesSection />
-      <CTASection />
+      <TestimonialsSection />
       <Footer />
     </Box>
   )
