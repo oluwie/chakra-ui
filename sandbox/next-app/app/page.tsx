@@ -24,36 +24,57 @@ import { ColorModeToggle } from "../components/color-mode-toggle"
 const Header = () => (
   <Box
     as="header"
-    borderBottom="1px"
-    borderColor="border"
     bg="bg.surface"
     position="sticky"
     top="0"
     zIndex="sticky"
+    backdropFilter="blur(10px)"
+    borderBottom="1px"
+    borderColor="border.subtle"
   >
-    <Container maxW="7xl">
-      <Flex justify="space-between" align="center" py="4">
-        <HStack gap="8">
-          <Box>
-            <NextImage
-              alt="company logo"
-              src="/static/logo.svg"
-              width="32"
-              height="32"
-            />
-          </Box>
-          <HStack gap="6" hideBelow="md">
-            <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
+    <Container maxW="8xl">
+      <Flex justify="space-between" align="center" py="6">
+        <HStack gap="12">
+          <VStack gap="0" align="start">
+            <Text fontSize="xl" fontWeight="black" color="purple.500">
+              PIXEL
+            </Text>
+            <Text fontSize="xs" color="fg.muted" mt="-1">
+              CREATIVE STUDIO
+            </Text>
+          </VStack>
+          <HStack gap="8" hideBelow="lg">
+            <Link
+              fontWeight="medium"
+              color="fg.muted"
+              _hover={{ color: "purple.500" }}
+              transition="all 0.2s"
+            >
+              Work
+            </Link>
+            <Link
+              fontWeight="medium"
+              color="fg.muted"
+              _hover={{ color: "purple.500" }}
+              transition="all 0.2s"
+            >
               Services
             </Link>
-            <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
+            <Link
+              fontWeight="medium"
+              color="fg.muted"
+              _hover={{ color: "purple.500" }}
+              transition="all 0.2s"
+            >
               About
             </Link>
-            <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
-              Portfolio
-            </Link>
-            <Link fontWeight="medium" color="fg.muted" _hover={{ color: "fg" }}>
-              Contact
+            <Link
+              fontWeight="medium"
+              color="fg.muted"
+              _hover={{ color: "purple.500" }}
+              transition="all 0.2s"
+            >
+              Blog
             </Link>
           </HStack>
         </HStack>
@@ -62,8 +83,22 @@ const Header = () => (
           <ClientOnly fallback={<Skeleton w="10" h="10" rounded="md" />}>
             <ColorModeToggle />
           </ClientOnly>
-          <Button colorPalette="red" size="lg" fontWeight="bold" px="8">
-            📞 Call Now
+          <Button
+            colorPalette="purple"
+            size="lg"
+            fontWeight="semibold"
+            px="8"
+            rounded="full"
+            bg="gradient-to-r"
+            bgGradient="linear(to-r, purple.500, pink.500)"
+            _hover={{
+              bgGradient: "linear(to-r, purple.600, pink.600)",
+              transform: "translateY(-2px)",
+            }}
+            transition="all 0.3s"
+            shadow="lg"
+          >
+            Let's Talk
           </Button>
         </HStack>
       </Flex>
@@ -71,332 +106,535 @@ const Header = () => (
   </Box>
 )
 
-// Hero Section with Hero Image
+// Hero Section
 const HeroSection = () => (
   <Box
     as="section"
-    py={{ base: "16", md: "24" }}
+    py={{ base: "20", md: "32" }}
     bg="bg.surface"
     overflow="hidden"
+    position="relative"
   >
-    <Container maxW="7xl">
-      <Grid
-        columns={{ base: 1, lg: 2 }}
-        gap="12"
-        align="center"
-        minH={{ base: "auto", lg: "80vh" }}
-      >
-        {/* Hero Content */}
-        <Stack gap="8" justify="center">
-          <Stack gap="6">
-            <Heading
-              size={{ base: "3xl", md: "5xl" }}
-              fontWeight="bold"
-              lineHeight="1.1"
-            >
-              Transform Your Business with
-              <Span color="blue.500" display="block">
-                Professional Solutions
-              </Span>
-            </Heading>
+    {/* Background Pattern */}
+    <Box
+      position="absolute"
+      inset="0"
+      opacity="0.1"
+      bg="gradient-to-br"
+      bgGradient="linear(to-br, purple.400, pink.400, orange.400)"
+      transform="rotate(15deg) scale(1.5)"
+      zIndex="0"
+    />
+
+    <Container maxW="8xl" position="relative" zIndex="1">
+      <Stack gap="20" align="center" textAlign="center">
+        <Stack gap="8" maxW="5xl">
+          <Box>
             <Text
-              fontSize={{ base: "lg", md: "xl" }}
-              color="fg.muted"
-              maxW="xl"
+              fontSize={{ base: "xs", md: "sm" }}
+              fontWeight="semibold"
+              color="purple.500"
+              textTransform="uppercase"
+              letterSpacing="wide"
+              mb="6"
             >
-              We deliver exceptional results that drive growth, increase
-              efficiency, and help your business reach new heights. Get started
-              today with a free consultation.
+              Award-winning creative studio
             </Text>
-          </Stack>
+            <Heading
+              size={{ base: "4xl", md: "6xl", lg: "7xl" }}
+              fontWeight="black"
+              lineHeight="0.9"
+              bgGradient="linear(to-r, purple.500, pink.500, orange.500)"
+              bgClip="text"
+              color="transparent"
+              mb="6"
+            >
+              We craft digital
+              <Span display="block" color="fg">
+                experiences that
+              </Span>
+              <Span display="block">inspire</Span>
+            </Heading>
+          </Box>
 
-          <HStack gap="4" flexWrap="wrap">
-            <Button colorPalette="red" size="xl" px="10" fontWeight="bold">
-              📞 Call Now - (555) 123-4567
-            </Button>
-            <Button variant="outline" size="xl" px="8">
-              Learn More
-            </Button>
-          </HStack>
-
-          <HStack gap="8" pt="4">
-            <VStack gap="1" align="start">
-              <Text fontSize="2xl" fontWeight="bold" color="blue.500">
-                500+
-              </Text>
-              <Text fontSize="sm" color="fg.muted">
-                Happy Clients
-              </Text>
-            </VStack>
-            <VStack gap="1" align="start">
-              <Text fontSize="2xl" fontWeight="bold" color="green.500">
-                98%
-              </Text>
-              <Text fontSize="sm" color="fg.muted">
-                Success Rate
-              </Text>
-            </VStack>
-            <VStack gap="1" align="start">
-              <Text fontSize="2xl" fontWeight="bold" color="purple.500">
-                24/7
-              </Text>
-              <Text fontSize="sm" color="fg.muted">
-                Support
-              </Text>
-            </VStack>
-          </HStack>
+          <Text
+            fontSize={{ base: "lg", md: "xl" }}
+            color="fg.muted"
+            maxW="3xl"
+            mx="auto"
+            lineHeight="1.7"
+          >
+            From stunning websites to powerful brands, we bring creative visions
+            to life with cutting-edge design and technology. Ready to make your
+            mark in the digital world?
+          </Text>
         </Stack>
 
-        {/* Hero Image */}
-        <Box position="relative" h={{ base: "400px", lg: "600px" }}>
-          <Box
-            position="absolute"
-            inset="0"
-            bg="gradient-to-br"
-            bgGradient="linear(to-br, blue.400, purple.600)"
-            rounded="2xl"
+        <HStack gap="6" flexWrap="wrap" justify="center">
+          <Button
+            size="xl"
+            px="12"
+            py="6"
+            fontWeight="semibold"
+            rounded="full"
+            bg="gradient-to-r"
+            bgGradient="linear(to-r, purple.500, pink.500)"
+            color="white"
+            _hover={{
+              bgGradient: "linear(to-r, purple.600, pink.600)",
+              transform: "translateY(-3px)",
+            }}
+            transition="all 0.3s"
             shadow="2xl"
-            transform="rotate(3deg)"
-            zIndex="1"
-          />
-          <Box
-            position="relative"
-            h="full"
-            bg="white"
-            _dark={{ bg: "gray.800" }}
-            rounded="2xl"
-            shadow="xl"
-            overflow="hidden"
-            zIndex="2"
-            p="8"
-            display="flex"
-            align="center"
-            justify="center"
-            flexDirection="column"
-            gap="6"
           >
-            <Box
-              w="20"
-              h="20"
-              bg="blue.500"
-              rounded="full"
-              display="flex"
-              align="center"
-              justify="center"
-              fontSize="3xl"
+            Start Your Project
+          </Button>
+          <Button
+            variant="outline"
+            size="xl"
+            px="12"
+            py="6"
+            fontWeight="semibold"
+            rounded="full"
+            borderColor="purple.500"
+            color="purple.500"
+            _hover={{
+              bg: "purple.50",
+              _dark: { bg: "purple.900/20" },
+              transform: "translateY(-3px)",
+            }}
+            transition="all 0.3s"
+          >
+            View Our Work
+          </Button>
+        </HStack>
+
+        {/* Creative Visual Element */}
+        <Grid columns={{ base: 1, md: 3 }} gap="8" w="full" maxW="4xl" pt="8">
+          {creativeCards.map((card, index) => (
+            <Card.Root
+              key={index}
+              variant="elevated"
+              h="64"
+              overflow="hidden"
+              transform={`rotate(${card.rotation}deg)`}
+              _hover={{
+                transform: `rotate(0deg) scale(1.05)`,
+              }}
+              transition="all 0.5s ease-in-out"
+              cursor="pointer"
             >
-              🚀
-            </Box>
-            <VStack gap="4" textAlign="center">
-              <Heading size="lg">Ready to Get Started?</Heading>
-              <Text color="fg.muted">
-                Join hundreds of satisfied customers who have transformed their
-                business with our solutions.
-              </Text>
-              <Button colorPalette="blue" size="lg">
-                Get Free Quote
-              </Button>
-            </VStack>
-          </Box>
-        </Box>
-      </Grid>
+              <Box
+                h="full"
+                bg={`gradient-to-br`}
+                bgGradient={`linear(to-br, ${card.gradient})`}
+                display="flex"
+                align="center"
+                justify="center"
+                flexDirection="column"
+                gap="4"
+                p="6"
+                color="white"
+              >
+                <Text fontSize="3xl">{card.icon}</Text>
+                <Text fontWeight="bold" fontSize="lg" textAlign="center">
+                  {card.title}
+                </Text>
+              </Box>
+            </Card.Root>
+          ))}
+        </Grid>
+      </Stack>
     </Container>
   </Box>
 )
 
-// Testimonials Section
-const TestimonialsSection = () => (
-  <Box as="section" py={{ base: "16", md: "24" }} bg="bg.canvas">
-    <Container maxW="7xl">
-      <Stack gap="16">
-        <Stack gap="4" textAlign="center" maxW="3xl" mx="auto">
-          <Heading size={{ base: "2xl", md: "3xl" }}>
-            What Our Clients Say
+// Services Section
+const ServicesSection = () => (
+  <Box as="section" py={{ base: "20", md: "32" }} bg="bg.canvas">
+    <Container maxW="8xl">
+      <Stack gap="20">
+        <Stack gap="6" textAlign="center" maxW="3xl" mx="auto">
+          <Text
+            fontSize="sm"
+            fontWeight="semibold"
+            color="purple.500"
+            textTransform="uppercase"
+            letterSpacing="wide"
+          >
+            What we do
+          </Text>
+          <Heading size={{ base: "2xl", md: "4xl" }} fontWeight="black">
+            Services that drive
+            <Span color="purple.500" display="block">
+              exceptional results
+            </Span>
           </Heading>
-          <Text fontSize="lg" color="fg.muted">
-            Don't just take our word for it. Here's what our satisfied customers
-            have to say about working with us.
+          <Text fontSize="lg" color="fg.muted" lineHeight="1.7">
+            We combine strategy, design, and technology to create digital
+            experiences that captivate and convert.
           </Text>
         </Stack>
 
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="8">
-          {testimonials.map((testimonial, index) => (
-            <Card.Root key={index} variant="elevated" h="full">
+          {services.map((service, index) => (
+            <Card.Root
+              key={index}
+              variant="elevated"
+              h="full"
+              _hover={{
+                transform: "translateY(-8px)",
+                shadow: "2xl",
+              }}
+              transition="all 0.3s"
+              overflow="hidden"
+            >
+              <Box
+                h="3"
+                bg="gradient-to-r"
+                bgGradient={`linear(to-r, ${service.color}.400, ${service.color}.600)`}
+              />
               <Card.Body p="8">
                 <Stack gap="6">
-                  {/* Star Rating */}
-                  <HStack gap="1">
-                    {[...Array(5)].map((_, i) => (
-                      <Text key={i} color="yellow.500" fontSize="lg">
-                        ★
-                      </Text>
-                    ))}
-                  </HStack>
-
-                  {/* Testimonial Text */}
-                  <Text fontSize="md" lineHeight="1.6" color="fg.muted">
-                    "{testimonial.text}"
-                  </Text>
-
-                  {/* Client Info */}
-                  <HStack gap="4">
-                    <Box
-                      w="12"
-                      h="12"
-                      bg="gradient-to-br"
-                      bgGradient={`linear(to-br, ${testimonial.color}.400, ${testimonial.color}.600)`}
-                      rounded="full"
-                      display="flex"
-                      align="center"
-                      justify="center"
-                      color="white"
-                      fontWeight="bold"
-                      fontSize="lg"
+                  <Box
+                    w="12"
+                    h="12"
+                    bg={`${service.color}.100`}
+                    _dark={{ bg: `${service.color}.900/20` }}
+                    rounded="xl"
+                    display="flex"
+                    align="center"
+                    justify="center"
+                    fontSize="2xl"
+                  >
+                    {service.icon}
+                  </Box>
+                  <Stack gap="4">
+                    <Heading size="lg" fontWeight="bold">
+                      {service.title}
+                    </Heading>
+                    <Text color="fg.muted" lineHeight="1.6">
+                      {service.description}
+                    </Text>
+                  </Stack>
+                  <HStack>
+                    <Text
+                      fontSize="sm"
+                      fontWeight="semibold"
+                      color={`${service.color}.500`}
                     >
-                      {testimonial.name.charAt(0)}
-                    </Box>
-                    <VStack gap="0" align="start">
-                      <Text fontWeight="semibold">{testimonial.name}</Text>
-                      <Text fontSize="sm" color="fg.muted">
-                        {testimonial.role} at {testimonial.company}
-                      </Text>
-                    </VStack>
+                      Learn more →
+                    </Text>
                   </HStack>
                 </Stack>
               </Card.Body>
             </Card.Root>
           ))}
         </SimpleGrid>
-
-        {/* Call to Action in Testimonials */}
-        <Box textAlign="center" pt="8">
-          <VStack gap="4">
-            <Text fontSize="lg" fontWeight="medium">
-              Ready to join our satisfied customers?
-            </Text>
-            <Button colorPalette="red" size="xl" px="10" fontWeight="bold">
-              📞 Call Now - (555) 123-4567
-            </Button>
-          </VStack>
-        </Box>
       </Stack>
     </Container>
   </Box>
 )
 
-// Footer Component
+// Portfolio Preview Section
+const PortfolioSection = () => (
+  <Box as="section" py={{ base: "20", md: "32" }} bg="bg.surface">
+    <Container maxW="8xl">
+      <Stack gap="20">
+        <Flex justify="space-between" align="end" flexWrap="wrap" gap="8">
+          <Stack gap="6" maxW="2xl">
+            <Text
+              fontSize="sm"
+              fontWeight="semibold"
+              color="purple.500"
+              textTransform="uppercase"
+              letterSpacing="wide"
+            >
+              Latest work
+            </Text>
+            <Heading size={{ base: "2xl", md: "4xl" }} fontWeight="black">
+              Projects we're
+              <Span color="purple.500" display="block">
+                proud of
+              </Span>
+            </Heading>
+          </Stack>
+          <Button
+            variant="outline"
+            size="lg"
+            fontWeight="semibold"
+            rounded="full"
+            borderColor="purple.500"
+            color="purple.500"
+            px="8"
+          >
+            View All Projects
+          </Button>
+        </Flex>
+
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="8">
+          {portfolio.map((project, index) => (
+            <Card.Root
+              key={index}
+              variant="elevated"
+              overflow="hidden"
+              _hover={{
+                transform: "scale(1.02)",
+              }}
+              transition="all 0.3s"
+              cursor="pointer"
+            >
+              <Box
+                h="64"
+                bg="gradient-to-br"
+                bgGradient={`linear(to-br, ${project.gradient})`}
+                display="flex"
+                align="center"
+                justify="center"
+                fontSize="6xl"
+                color="white"
+              >
+                {project.icon}
+              </Box>
+              <Card.Body p="8">
+                <Stack gap="4">
+                  <HStack justify="space-between">
+                    <Heading size="lg" fontWeight="bold">
+                      {project.title}
+                    </Heading>
+                    <Text
+                      fontSize="sm"
+                      px="3"
+                      py="1"
+                      bg="purple.100"
+                      _dark={{ bg: "purple.900/20" }}
+                      color="purple.600"
+                      rounded="full"
+                      fontWeight="medium"
+                    >
+                      {project.category}
+                    </Text>
+                  </HStack>
+                  <Text color="fg.muted" lineHeight="1.6">
+                    {project.description}
+                  </Text>
+                </Stack>
+              </Card.Body>
+            </Card.Root>
+          ))}
+        </SimpleGrid>
+      </Stack>
+    </Container>
+  </Box>
+)
+
+// CTA Section
+const CTASection = () => (
+  <Box
+    as="section"
+    py={{ base: "20", md: "32" }}
+    bg="gradient-to-br"
+    bgGradient="linear(to-br, purple.600, pink.600)"
+    color="white"
+    position="relative"
+    overflow="hidden"
+  >
+    <Box
+      position="absolute"
+      top="-50%"
+      right="-20%"
+      w="120%"
+      h="120%"
+      bg="gradient-to-br"
+      bgGradient="linear(to-br, purple.400, pink.400)"
+      rounded="full"
+      opacity="0.1"
+      transform="rotate(15deg)"
+    />
+
+    <Container maxW="6xl" position="relative" zIndex="1">
+      <Stack gap="12" textAlign="center">
+        <Stack gap="6">
+          <Heading
+            size={{ base: "3xl", md: "5xl" }}
+            fontWeight="black"
+            lineHeight="1.1"
+          >
+            Ready to bring your
+            <Span display="block">vision to life?</Span>
+          </Heading>
+          <Text
+            fontSize={{ base: "lg", md: "xl" }}
+            opacity="0.9"
+            maxW="3xl"
+            mx="auto"
+          >
+            Let's create something amazing together. From concept to launch,
+            we'll be your partner in digital success.
+          </Text>
+        </Stack>
+
+        <HStack gap="6" justify="center" flexWrap="wrap">
+          <Button
+            size="xl"
+            px="12"
+            py="6"
+            bg="white"
+            color="purple.600"
+            fontWeight="bold"
+            rounded="full"
+            _hover={{
+              transform: "translateY(-3px)",
+              shadow: "2xl",
+            }}
+            transition="all 0.3s"
+          >
+            Start Your Project
+          </Button>
+          <Button
+            variant="outline"
+            size="xl"
+            px="12"
+            py="6"
+            borderColor="white"
+            color="white"
+            fontWeight="semibold"
+            rounded="full"
+            _hover={{
+              bg: "whiteAlpha.200",
+              transform: "translateY(-3px)",
+            }}
+            transition="all 0.3s"
+          >
+            Schedule a Call
+          </Button>
+        </HStack>
+
+        <HStack gap="12" justify="center" pt="8" opacity="0.8">
+          <VStack gap="1">
+            <Text fontSize="2xl" fontWeight="bold">
+              200+
+            </Text>
+            <Text fontSize="sm">Projects Delivered</Text>
+          </VStack>
+          <VStack gap="1">
+            <Text fontSize="2xl" fontWeight="bold">
+              50+
+            </Text>
+            <Text fontSize="sm">Happy Clients</Text>
+          </VStack>
+          <VStack gap="1">
+            <Text fontSize="2xl" fontWeight="bold">
+              5★
+            </Text>
+            <Text fontSize="sm">Average Rating</Text>
+          </VStack>
+        </HStack>
+      </Stack>
+    </Container>
+  </Box>
+)
+
+// Footer
 const Footer = () => (
   <Box as="footer" bg="bg.surface" borderTop="1px" borderColor="border">
-    <Container maxW="7xl">
-      <Stack gap="12" py="16">
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap="8">
-          {/* Company Info */}
+    <Container maxW="8xl">
+      <Stack gap="16" py="20">
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap="12">
           <Stack gap="6">
-            <HStack>
-              <NextImage
-                alt="company logo"
-                src="/static/logo.svg"
-                width="32"
-                height="32"
-              />
-              <Text fontWeight="bold" fontSize="xl">
-                YourCompany
+            <VStack gap="0" align="start">
+              <Text fontSize="2xl" fontWeight="black" color="purple.500">
+                PIXEL
               </Text>
-            </HStack>
-            <Text color="fg.muted" maxW="sm">
-              We're dedicated to providing exceptional solutions that help
-              businesses grow and succeed in today's competitive market.
+              <Text fontSize="sm" color="fg.muted">
+                CREATIVE STUDIO
+              </Text>
+            </VStack>
+            <Text color="fg.muted" maxW="sm" lineHeight="1.6">
+              We're a creative studio passionate about crafting digital
+              experiences that inspire, engage, and convert.
             </Text>
-            <Button
-              colorPalette="red"
-              size="lg"
-              w="fit-content"
-              fontWeight="bold"
-            >
-              📞 Call Now
-            </Button>
+            <HStack gap="4">
+              {["🐦", "📸", "💼", "📺"].map((icon, index) => (
+                <Box
+                  key={index}
+                  w="10"
+                  h="10"
+                  bg="purple.100"
+                  _dark={{ bg: "purple.900/20" }}
+                  rounded="full"
+                  display="flex"
+                  align="center"
+                  justify="center"
+                  cursor="pointer"
+                  _hover={{
+                    bg: "purple.500",
+                    color: "white",
+                    transform: "translateY(-2px)",
+                  }}
+                  transition="all 0.3s"
+                >
+                  {icon}
+                </Box>
+              ))}
+            </HStack>
           </Stack>
 
-          {/* Services */}
           <Stack gap="4">
-            <Text fontWeight="semibold" fontSize="lg">
+            <Text fontWeight="bold" fontSize="lg">
               Services
             </Text>
             <Stack gap="2">
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Business Consulting
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Digital Marketing
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Web Development
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Strategy Planning
-              </Link>
+              {[
+                "Brand Design",
+                "Web Development",
+                "Digital Marketing",
+                "UI/UX Design",
+              ].map((item) => (
+                <Link
+                  key={item}
+                  color="fg.muted"
+                  _hover={{ color: "purple.500" }}
+                >
+                  {item}
+                </Link>
+              ))}
             </Stack>
           </Stack>
 
-          {/* Company */}
           <Stack gap="4">
-            <Text fontWeight="semibold" fontSize="lg">
+            <Text fontWeight="bold" fontSize="lg">
               Company
             </Text>
             <Stack gap="2">
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                About Us
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Our Team
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Careers
-              </Link>
-              <Link color="fg.muted" _hover={{ color: "fg" }}>
-                Contact
-              </Link>
+              {["About Us", "Our Process", "Careers", "Blog"].map((item) => (
+                <Link
+                  key={item}
+                  color="fg.muted"
+                  _hover={{ color: "purple.500" }}
+                >
+                  {item}
+                </Link>
+              ))}
             </Stack>
           </Stack>
 
-          {/* Contact Info */}
           <Stack gap="4">
-            <Text fontWeight="semibold" fontSize="lg">
-              Contact
+            <Text fontWeight="bold" fontSize="lg">
+              Get in Touch
             </Text>
             <Stack gap="3">
-              <VStack gap="1" align="start">
-                <Text fontWeight="medium">📞 Phone</Text>
-                <Link
-                  color="red.500"
-                  fontWeight="bold"
-                  fontSize="lg"
-                  _hover={{ color: "red.600" }}
-                >
-                  (555) 123-4567
-                </Link>
-              </VStack>
-              <VStack gap="1" align="start">
-                <Text fontWeight="medium">📧 Email</Text>
-                <Link color="fg.muted" _hover={{ color: "fg" }}>
-                  hello@yourcompany.com
-                </Link>
-              </VStack>
-              <VStack gap="1" align="start">
-                <Text fontWeight="medium">📍 Address</Text>
-                <Text color="fg.muted" fontSize="sm">
-                  123 Business St
-                  <br />
-                  Suite 100
-                  <br />
-                  City, ST 12345
-                </Text>
-              </VStack>
+              <Text color="fg.muted">hello@pixelstudio.com</Text>
+              <Text color="fg.muted">+1 (555) 123-4567</Text>
+              <Text color="fg.muted" fontSize="sm">
+                123 Creative Street
+                <br />
+                Design District, CA 90210
+              </Text>
             </Stack>
           </Stack>
         </SimpleGrid>
 
-        {/* Bottom Footer */}
         <Box pt="8" borderTop="1px" borderColor="border">
           <Flex
             direction={{ base: "column", md: "row" }}
@@ -405,17 +643,22 @@ const Footer = () => (
             gap="4"
           >
             <Text color="fg.muted" fontSize="sm">
-              © 2024 YourCompany. All rights reserved.
+              © 2024 Pixel Creative Studio. All rights reserved.
             </Text>
             <HStack gap="6">
-              <Link color="fg.muted" fontSize="sm" _hover={{ color: "fg" }}>
+              <Link
+                color="fg.muted"
+                fontSize="sm"
+                _hover={{ color: "purple.500" }}
+              >
                 Privacy Policy
               </Link>
-              <Link color="fg.muted" fontSize="sm" _hover={{ color: "fg" }}>
+              <Link
+                color="fg.muted"
+                fontSize="sm"
+                _hover={{ color: "purple.500" }}
+              >
                 Terms of Service
-              </Link>
-              <Link color="fg.muted" fontSize="sm" _hover={{ color: "fg" }}>
-                Cookie Policy
               </Link>
             </HStack>
           </Flex>
@@ -425,49 +668,105 @@ const Footer = () => (
   </Box>
 )
 
-// Testimonials Data
-const testimonials = [
+// Data
+const creativeCards = [
   {
-    name: "Sarah Johnson",
-    role: "CEO",
-    company: "TechStart Inc",
-    text: "Working with this team completely transformed our business. Their expertise and dedication helped us increase our revenue by 300% in just 6 months.",
-    color: "blue",
+    icon: "🎨",
+    title: "Creative Design",
+    rotation: -5,
+    gradient: "purple.500, pink.500",
   },
   {
-    name: "Michael Chen",
-    role: "Marketing Director",
-    company: "GrowthCorp",
-    text: "The results speak for themselves. Our customer acquisition cost dropped by 50% while our conversion rates doubled. Highly recommend their services!",
-    color: "green",
+    icon: "⚡",
+    title: "Fast Development",
+    rotation: 2,
+    gradient: "blue.500, cyan.500",
   },
   {
-    name: "Emily Davis",
-    role: "Founder",
-    company: "InnovateLab",
-    text: "Professional, responsive, and incredibly knowledgeable. They understood our vision and delivered beyond our expectations. A true partner in our success.",
+    icon: "🚀",
+    title: "Launch Success",
+    rotation: -3,
+    gradient: "orange.500, red.500",
+  },
+]
+
+const services = [
+  {
+    icon: "🎨",
+    title: "Brand Design",
+    description:
+      "Complete brand identity packages that tell your story and connect with your audience.",
     color: "purple",
   },
   {
-    name: "Robert Wilson",
-    role: "Operations Manager",
-    company: "Efficiency Pro",
-    text: "The strategic insights and implementation support we received were game-changing. Our operational efficiency improved dramatically within weeks.",
+    icon: "💻",
+    title: "Web Development",
+    description:
+      "Custom websites and applications built with cutting-edge technology and best practices.",
+    color: "blue",
+  },
+  {
+    icon: "📱",
+    title: "UI/UX Design",
+    description:
+      "Intuitive interfaces that provide seamless user experiences across all devices.",
+    color: "green",
+  },
+  {
+    icon: "📈",
+    title: "Digital Marketing",
+    description:
+      "Strategic campaigns that drive engagement, conversions, and sustainable growth.",
     color: "orange",
   },
   {
-    name: "Lisa Thompson",
-    role: "VP of Sales",
-    company: "SalesForce Plus",
-    text: "Our sales team's performance skyrocketed after implementing their recommendations. The ROI on this investment was immediate and substantial.",
-    color: "red",
+    icon: "🎯",
+    title: "Strategy Consulting",
+    description:
+      "Data-driven insights and recommendations to optimize your digital presence.",
+    color: "pink",
   },
   {
-    name: "David Kim",
-    role: "CTO",
-    company: "DevSolutions",
-    text: "Technical excellence combined with business acumen - rare to find both in one team. They helped us scale our platform to handle 10x the traffic.",
-    color: "teal",
+    icon: "⚡",
+    title: "Performance Optimization",
+    description:
+      "Speed and efficiency improvements that enhance user experience and SEO rankings.",
+    color: "cyan",
+  },
+]
+
+const portfolio = [
+  {
+    icon: "🛍️",
+    title: "EcoStyle Marketplace",
+    category: "E-commerce",
+    description:
+      "A sustainable fashion marketplace with advanced filtering and AR try-on features.",
+    gradient: "green.500, teal.500",
+  },
+  {
+    icon: "🏋️",
+    title: "FitTrack Pro",
+    category: "Health & Fitness",
+    description:
+      "Comprehensive fitness tracking app with social features and AI-powered recommendations.",
+    gradient: "orange.500, red.500",
+  },
+  {
+    icon: "🎵",
+    title: "SoundWave Studio",
+    category: "Entertainment",
+    description:
+      "Music production platform connecting artists with professional producers worldwide.",
+    gradient: "purple.500, pink.500",
+  },
+  {
+    icon: "🏠",
+    title: "HomeSpace",
+    category: "Real Estate",
+    description:
+      "Virtual property tours and smart home integration for modern real estate.",
+    gradient: "blue.500, cyan.500",
   },
 ]
 
@@ -477,7 +776,9 @@ export default async function Page() {
     <Box minH="100vh" bg="bg.canvas">
       <Header />
       <HeroSection />
-      <TestimonialsSection />
+      <ServicesSection />
+      <PortfolioSection />
+      <CTASection />
       <Footer />
     </Box>
   )
