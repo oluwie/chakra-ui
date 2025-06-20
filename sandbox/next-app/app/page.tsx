@@ -167,9 +167,9 @@ const FeaturesSection = () => (
                       rounded="lg"
                       w="fit-content"
                     >
-                      <Icon fontSize="xl" color="blue.500">
+                      <Box fontSize="xl" color="blue.500">
                         {feature.icon}
-                      </Icon>
+                      </Box>
                     </Box>
                   </Box>
                   <Stack gap="2">
