@@ -7,7 +7,6 @@ import {
   Grid,
   HStack,
   Heading,
-  Icon,
   Link,
   SimpleGrid,
   Span,
@@ -372,7 +371,7 @@ const features = [
       "Mobile-first responsive design system with breakpoint utilities.",
   },
   {
-    icon: "🧩",
+    icon: "���",
     title: "Composable",
     description:
       "Compose complex UIs from simple, reusable component building blocks.",
